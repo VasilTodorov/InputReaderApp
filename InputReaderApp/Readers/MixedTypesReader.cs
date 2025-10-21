@@ -40,10 +40,7 @@ namespace InputReaderApp.Readers
                 data.Add(new Person(parts[0], age, weight));
             }
 
-            return Result<List<Person>>.Success(data);
-
-
-            
+            return Result<List<Person>>.Success(data);           
 
         }
     }

@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace InputReaderApp.Tests.Readers
 {
-    public class NestedListReaderTests
+    public class JaggedArrayReaderTests
     {
         [Fact]
-        public void Read_ShouldReturnNestedList_1()
+        public void Read_ShouldReturnJaggedArray_1()
         {
             //Arrange
             string input = "1 2" + "\n" +
@@ -28,7 +28,7 @@ namespace InputReaderApp.Tests.Readers
             expected.Add(new List<int> { 7, 8, 9, 10, 11});
 
             //Act
-            NestedListReader reader = new NestedListReader(new StringReader(input));
+            JaggedArrayReader reader = new JaggedArrayReader(new StringReader(input));
             Result<List<List<int>>> result = reader.Read();
 
             //Assert
@@ -37,7 +37,7 @@ namespace InputReaderApp.Tests.Readers
             
         }
         [Fact]
-        public void Read_ShouldReturnNestedList_2()
+        public void Read_ShouldReturnJaggedArray_2()
         {
             //Arrange
             string input = "1 2 3 4 5 6" + "\n" +
@@ -53,7 +53,7 @@ namespace InputReaderApp.Tests.Readers
             expected.Add(new List<int> { 7, 8, 9, 10, 11, 12 });
 
             //Act
-            NestedListReader reader = new NestedListReader(new StringReader(input));
+            JaggedArrayReader reader = new JaggedArrayReader(new StringReader(input));
             Result<List<List<int>>> result = reader.Read();
 
             //Assert
@@ -71,7 +71,7 @@ namespace InputReaderApp.Tests.Readers
         public void Read_ShouldFail_OnVariousInvalidInputs(string input)
         {
             //Act
-            var reader = new NestedListReader(new StringReader(input));
+            var reader = new JaggedArrayReader(new StringReader(input));
             Result<List<List<int>>> result = reader.Read();
 
             //Assert

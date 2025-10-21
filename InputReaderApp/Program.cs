@@ -6,7 +6,7 @@ namespace InputReaderApp
     {
         static void Main(string[] args)
         {
-            var reader = new NestedListReader();
+            var reader = new JaggedArrayReader();
             var result = reader.Read();
             Console.WriteLine(result.IsSuccess ? "List" : "Invalid");
             //Console.WriteLine("Hello, World!");
