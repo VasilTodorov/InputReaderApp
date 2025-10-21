@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="InputReaderApp.Tests/InputReaderApp.Tests.csproj" />
+  <Project Path="InputReaderApp/InputReaderApp.csproj" />
+</Solution>
