@@ -1,4 +1,4 @@
-﻿using InputReaderApp.Readers.InputReaderApp.Readers;
+﻿using InputReaderApp.Readers;
 using InputReaderApp.Utils;
 using System;
 using System.Collections.Generic;
