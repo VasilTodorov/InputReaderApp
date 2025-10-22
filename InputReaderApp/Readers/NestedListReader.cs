@@ -26,8 +26,7 @@ namespace InputReaderApp.Readers
 
             if(line=="")
                 return Result<List<List<int>>>.Success(result);
-
-            //List<string> parts = line.Split(',').Select(p=>p.Trim()).ToList();
+           
             var resultParts = ListSpliter(line);
 
             if (resultParts.IsFailure)
