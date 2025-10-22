@@ -11,7 +11,9 @@ namespace InputReaderApp.Readers
 {
     public record Employee(string Name, int Age, decimal Salary);
     public record Location(string City, string Description);
+    //ToDo change List<Employee> Guests to ImmutableList<Employee> Guests
     public record Meeting(Location Location, float DurationInHours, List<Employee> Guests);
+    //ToDo change DataBase to record with ImmutableList<> 
     public struct DataBase
     {
         public List<Employee> Employees { get; set; }
