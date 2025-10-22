@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InputReaderApp.Readers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -68,6 +69,34 @@ namespace InputReaderApp.Tests.Helpers
             }
 
 
+        }
+        public static void EqualDataBase(DataBase expected,  DataBase actual)
+        {            
+            EqualLists(expected.Employees, actual.Employees);
+            EqualLists(expected.Locations, actual.Locations);
+            
+            Assert.Equal(expected.Meetings.Count, actual.Meetings.Count);
+            
+            for(int i = 0; i < expected.Meetings.Count; i++)
+            {               
+                EqualMeetings(expected.Meetings[i], actual.Meetings[i]);
+            }
+        }
+        public static void EqualMeetings(Meeting expected, Meeting actual)
+        {
+            if (expected is null)
+                throw new ArgumentNullException(nameof(expected));
+            if (actual is null)
+                throw new ArgumentNullException(nameof(actual));
+
+            Assert.Equal(expected.Location, actual.Location);
+            Assert.Equal(expected.DurationInHours, actual.DurationInHours);
+
+            Assert.Equal(expected.Guests.Count, expected.Guests.Count);
+            for (int i = 0; i < expected.Guests.Count; i++)
+            {
+                Assert.Equal(expected.Guests[i], expected.Guests[i]);
+            }
         }
     }
 }
