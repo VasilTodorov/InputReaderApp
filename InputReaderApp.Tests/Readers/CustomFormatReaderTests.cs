@@ -26,34 +26,29 @@ namespace InputReaderApp.Tests.Readers
             //Assert
             Assert.True(result.IsSuccess);
             Assert.Equal(expected, result.Data!);
-        }
+        }        
 
-        [Fact]
-        public void Read_ShouldReturnEqualResults()
-        {
+        [Theory]
+        [InlineData("name:John age:30 score:92")]
+        [InlineData("name:John score:92 age:30")]
+        [InlineData("score:92 name:John age:30")]
+        [InlineData("age:30 name:John score:92")]
+        [InlineData("age:30 score:92 name:John")]
+        [InlineData("score:92 age:30 name:John")]
+        public void Read_ShouldReturnEqualResults(string input)
+        {   
             //Arrange
-            string[] inputs = { "name:John age:30 score:92",
-                                "name:John score:92 age:30",
-                                "score:92 name:John age:30",
-                                "age:30 name:John score:92",
-                                "age:30 score:92 name:John",
-                                "score:92 age:30 name:John"};
-
             PersonGame expected = new PersonGame("John", 30, 92);
 
             //Act
-            Result<PersonGame>[] results = inputs
-                                        .Select(i => new CustomFormatReader(new StringReader(i)).Read())
-                                        .ToArray();
+            CustomFormatReader reader = new CustomFormatReader(new StringReader(input));
+            Result<PersonGame> result = reader.Read();
 
             //Assert
-            Assert.True(results.All(r=>r.IsSuccess));
-            foreach(Result<PersonGame> result in results)
-            {
-                Assert.Equal(result.Data, expected);
-            }
-                   
-        }        
+            Assert.True(result.IsSuccess);
+            Assert.Equal(expected, result.Data!);
+
+        }
 
         [Theory]
         [InlineData("name:John age:30")]
