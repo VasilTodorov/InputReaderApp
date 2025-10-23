@@ -8,16 +8,19 @@ namespace InputReaderApp
     {
         static void Main(string[] args)
         {
-            //var writer = new FileWriter();
-            
-            //using (var appender = File.AppendText("file.txt"))
-            //{
-            //    appender.Write("Hello me!!!");
-            //}
-                
-            //appender.Close();
-           
-            //writer.Write("My Name is Vasil 2001", "input.txt");
+            var json = @"[
+  { ""Name"": ""Alice"", ""Age"": 30, ""City"": ""London"" },
+  { ""Name"": ""Bob"", ""Age"": 25, ""City"": ""New York"" },
+  { ""Name"": ""Charlie"", ""Age"": 35, ""City"": ""Paris"" }
+]";
+
+            var writer = new JSONFileTableWriter();
+            var result = writer.Write(json, "output.txt");
+
+            if (result.IsSuccess)
+                Console.WriteLine("JSON table written successfully!");
+            else
+                Console.WriteLine($"Failed: {result.Message}");
         }
     }
 }

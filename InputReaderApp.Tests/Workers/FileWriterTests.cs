@@ -18,7 +18,7 @@ namespace InputReaderApp.Tests.Workers
             var content = "Hello, world!";
 
             // Act
-            var result = writer.Write(content, filePath);
+            var result = writer.Write(filePath, content);
 
             // Assert
             Assert.True(result.IsSuccess);
@@ -37,7 +37,7 @@ namespace InputReaderApp.Tests.Workers
             string invalidPath = "";
 
             // Act
-            var result = writer.Write("data", invalidPath);
+            var result = writer.Write(invalidPath, "data");
 
             // Assert
             Assert.False(result.IsSuccess);
@@ -52,7 +52,7 @@ namespace InputReaderApp.Tests.Workers
             var invalidPath = "?:\\invalid\\path.txt"; // invalid characters
 
             // Act
-            var result = writer.Write("data", invalidPath);
+            var result = writer.Write(invalidPath, "data");
 
             // Assert
             Assert.False(result.IsSuccess);

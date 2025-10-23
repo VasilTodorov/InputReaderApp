@@ -8,6 +8,6 @@ namespace InputReaderApp.Utils
 {
     public interface IOutputWriter<T>
     {
-        Result Write(T value, string outputFilePath);
+        Result Write(string outputFilePath,T value);
     }
 }

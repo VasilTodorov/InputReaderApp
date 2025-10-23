@@ -9,7 +9,7 @@ namespace InputReaderApp.Writers
 {
     public class FileWriter : IOutputWriter<string>
     {
-        public Result Write(string value, string outputFilePath)
+        public Result Write(string outputFilePath,string value)
         {
             try
             {
