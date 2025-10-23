@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace InputReaderApp.Apps
 {
-    public class DynamicFileReader
+    public class DynamicFileWorker
     {
     }
 }

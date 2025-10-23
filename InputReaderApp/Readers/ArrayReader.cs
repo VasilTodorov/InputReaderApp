@@ -23,7 +23,7 @@ namespace InputReaderApp.Readers
                             .ToArray();
 
                 if (data.Length != 2 || data[0] <= 0 || data[1] <= 0) 
-                    return Result<int[,]>.Fail(ErrorCode.InvalidDimension);
+                    return Result<int[,]>.Fail(ErrorCode.InvalidFormat);
 
                 int[,] array = new int[data[0], data[1]] ;
 
@@ -34,7 +34,7 @@ namespace InputReaderApp.Readers
                                 .Select(x => int.Parse(x))
                                 .ToArray();
 
-                    if(row.Length != data[1]) return Result<int[,]>.Fail(ErrorCode.RowColMismatch);
+                    if(row.Length != data[1]) return Result<int[,]>.Fail(ErrorCode.InvalidFormat);
                     for (int j = 0; j < row.Length; j++)
                         array[i,j] = row[j];
                 }

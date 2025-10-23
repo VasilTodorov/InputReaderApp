@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace InputReaderApp.Utils
 {
-    public enum ErrorCode {InvalidFormat, RowColMismatch, InvalidDimension, InputNotFound, InvalidIndex, InternalError}
+    public enum ErrorCode {InvalidFormat, InputNotFound, InternalError}
     /// <summary>
     /// The result of an operation that returns Data.
     /// If Fail it has Code and Message

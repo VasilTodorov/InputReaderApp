@@ -12,7 +12,6 @@ namespace InputReaderApp.Readers
     public class ExpressionReader : ReaderBase<Double>
     {
         public ExpressionReader(TextReader? input = null) : base(input) { }
-
         public override Result<double> Read()
         {
             string? line = Input.ReadLine();
@@ -20,10 +19,8 @@ namespace InputReaderApp.Readers
             if (string.IsNullOrWhiteSpace(line))
                 return Result<double>.Fail(ErrorCode.InputNotFound, "Error(1) : input not found");
 
-
             return EvaluateExpression(line);
         }
-
         internal Result<double> EvaluateExpression(string expression)
         {
             Stack<string> operators = new Stack<string>();

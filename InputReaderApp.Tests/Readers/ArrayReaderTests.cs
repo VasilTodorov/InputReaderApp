@@ -88,7 +88,7 @@ namespace InputReaderApp.Tests.Readers
 
             // Assert
             Assert.True(result.IsFailure);
-            Assert.Equal(ErrorCode.RowColMismatch, result.Code);
+            Assert.Equal(ErrorCode.InvalidFormat, result.Code);
             
         }
 
@@ -103,7 +103,7 @@ namespace InputReaderApp.Tests.Readers
 
             //Assert
             Assert.True(result.IsFailure);
-            Assert.Equal(ErrorCode.InvalidDimension, result.Code);
+            Assert.Equal(ErrorCode.InvalidFormat, result.Code);
             
         }
     }
