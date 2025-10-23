@@ -1,4 +1,5 @@
 ﻿using InputReaderApp.Readers;
+using InputReaderApp.Utils;
 
 namespace InputReaderApp
 {
@@ -6,9 +7,26 @@ namespace InputReaderApp
     {
         static void Main(string[] args)
         {
-            DifferentStatesReader reader = new DifferentStatesReader();
+            var reader = new ExpressionReader(new StringReader("3 + 5 * (2( - 1))"));
+            //double a = 2 2;
 
-            Console.WriteLine(reader.Read().IsSuccess ? "Success" : "Failer");
+            //string s = "2 2"; // copy-paste your actual string here
+            //foreach (char c in s)
+            //    Console.WriteLine($"'{c}' => {(int)c}");
+
+            //if (float.TryParse(s, out float number))
+            //    Console.WriteLine(number);
+            //else
+            //    Console.WriteLine("\"2 2\" is not a number");
+
+            // Act
+            Result<double> result = reader.Read();
+            if (result.IsFailure) {
+                Console.WriteLine("Failer");
+            }else
+            {
+                Console.WriteLine($"Result: {result.Data}");
+            }
         }
     }
 }
