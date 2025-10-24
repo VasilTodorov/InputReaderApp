@@ -17,19 +17,35 @@ namespace InputReaderApp.Apps
         {
             try
             {
-                string? inputDirectory = inputDirectoryPath;
+                if (string.IsNullOrWhiteSpace(inputDirectoryPath) || string.IsNullOrWhiteSpace(outputDirectoryPath))
+                    return Result.Fail(ErrorCode.InputNotFound, "Input directory path is empty or null.");
 
-                if (!string.IsNullOrEmpty(inputDirectory) && !Directory.Exists(inputDirectory))
+                try
                 {
-                    Directory.CreateDirectory(inputDirectory);
+                    if (!Directory.Exists(inputDirectoryPath))
+                        Directory.CreateDirectory(inputDirectoryPath);
+                    if (!Directory.Exists(outputDirectoryPath))
+                        Directory.CreateDirectory(outputDirectoryPath);
+                }
+                catch (Exception ex)
+                {
+                    return Result.Fail(ErrorCode.InputNotFound, $"Invalid input directory path: {ex.Message}");
                 }
 
-                string? outputDirectory = outputDirectoryPath;
+                
+                //string? inputDirectory = inputDirectoryPath;
 
-                if (!string.IsNullOrEmpty(outputDirectory) && !Directory.Exists(outputDirectory))
-                {
-                    Directory.CreateDirectory(outputDirectory);
-                }
+                //if (!string.IsNullOrEmpty(inputDirectory) && !Directory.Exists(inputDirectory))
+                //{
+                //    Directory.CreateDirectory(inputDirectory);
+                //}
+
+                //string? outputDirectory = outputDirectoryPath;
+
+                //if (!string.IsNullOrEmpty(outputDirectory) && !Directory.Exists(outputDirectory))
+                //{
+                //    Directory.CreateDirectory(outputDirectory);
+                //}
 
                 List<string> readFilePaths = new List<string>();
 
@@ -59,7 +75,16 @@ namespace InputReaderApp.Apps
 
             try
             {
-                var currentFilePaths = Directory.GetFiles(inputDirectory);
+                string[] currentFilePaths;
+                try
+                {
+                    currentFilePaths = Directory.GetFiles(inputDirectory);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Cannot read input directory: {ex.Message}");
+                    return;
+                }
                 List<string> newFilePaths = currentFilePaths.Where(p => !readFilePaths.Contains(p)).ToList();
 
                 foreach (var filePath in newFilePaths)
